@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Update Pet</title>
+    </head>
+    <body>
+      <form action="{% url 'update_pet' pet_id=pet.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Update">
+      </form>
+    </body>
+</html>
