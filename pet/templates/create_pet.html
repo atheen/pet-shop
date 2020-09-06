@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Create Pet</title>
-    </head>
-    <body>
-      <form action="{% url 'create_pet' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Create">
-      </form>
-    </body>
-</html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Create Pet
+{% endblock title %}
+
+{% block content %}
+  <div class="jumbotron">
+    <form action="{% url 'create_pet' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form|crispy}}
+      <input type="submit" value="Create">
+    </form>
+  </div>
+{% endblock content %}

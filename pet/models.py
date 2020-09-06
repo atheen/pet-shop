@@ -7,5 +7,5 @@ class Pet(models.Model):
     image= models.ImageField()
     price= models.DecimalField(max_digits=10, decimal_places=4)
 
-    def str(self):
+    def __str__(self):
         return self.name

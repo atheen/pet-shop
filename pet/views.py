@@ -4,7 +4,7 @@ from .forms import PetForm
 
 def list_view(request):
     context = {
-        "pets": Pet.objects.all(),
+        "pets": Pet.objects.filter(available=True),
     }
     return render(request, 'pets_list.html', context)
 
@@ -12,7 +12,6 @@ def detail_view(request,pet_id):
     context = {
         "pet": Pet.objects.get(id=pet_id),
     }
-
     return render(request, 'pets_detail.html', context)
 
 
@@ -36,7 +35,7 @@ def update_pet(request, pet_id):
         form = PetForm(request.POST, request.FILES, instance = pet)
         if form.is_valid():
             form.save()
-            return redirect("pets_detail")
+            return redirect("pets_detail",pet_id)
     context = {
         "pet":pet,
         "form":form
